@@ -1,8 +1,8 @@
 const boidSize = 4;
-const maxSpeed = 3;
+const maxSpeed = 2.5;
 const boidsMinDistance = 30;
 const maxForce = 10;
-const mouseAffinity = 5;
+const mouseAffinityVal = 0; //should have decimal value
 
 class Boid {
     constructor(xpos, ypos) {
@@ -37,16 +37,16 @@ class Boid {
 
     update(context, x, y) {
         this.draw(context);
-        //console.log('xp ' + this.xPos + ' xv ' + this.xVel + ' yp ' + this.yPos + ' yv ' + this.yVel);
 
-        
         this.xVel += this.xAcc;
         this.yVel += this.yAcc;
 
         this.angle = Math.atan(this.yVel/this.xVel);
-        this.xVel = maxSpeed * Math.cos(this.angle);
-        this.yVel = maxSpeed * Math.sin(this.angle);
+        if (this.xVel < 0) this.angle += Math.PI;
 
+        this.xVel = maxSpeed * Math.cos(this.angle);
+
+        this.yVel = maxSpeed * Math.sin(this.angle);
 
         this.xPos += this.xVel;
         this.yPos += this.yVel;
@@ -56,39 +56,51 @@ class Boid {
         if (this.xPos > window.innerWidth) this.xPos = 0;
         if (this.yPos > window.innerHeight) this.yPos = 0;
 
+
+
     }
 
-    align(boids) {
+    alignment_and_cohesion(boids) {
         let xVelocities = [];
         let yVelocities = [];
-        let averageX = 0;
-        let averageY = 0;
+        let xPositions = [];
+        let yPositions = [];
+        let xAvgVel = 0;
+        let yAvgVel = 0;
+        let xAvgPos = 0;
+        let yAvgPos = 0;
         for (let other of boids) {
-            if (other != this && Math.sqrt(Math.pow(this.xPos - other.yPos, 2) +  Math.pow(this.yPos - other.yPos, 2)) < boidsMinDistance) {
+            if (other != this && Math.sqrt(Math.pow(this.xPos - other.xPos, 2) +  Math.pow(this.yPos - other.yPos, 2)) < boidsMinDistance) {
                 xVelocities.push(other.xVel);
                 yVelocities.push(other.yVel);
+                xPositions.push(other.xPos);
+                yPositions.push(other.yPos);
             }
         }
-        for(var i = 0; i < xVelocities.length; i++) {
-
-            averageX += xVelocities[i];
-            averageY += yVelocities[i];
+        let nBoids = xVelocities.length;
+        for(var i = 0; i < nBoids; i++) {
+            xAvgVel += xVelocities[i];
+            yAvgVel += yVelocities[i];
+            xAvgPos += xPositions[i];
+            yAvgPos += yPositions[i];
         }
-        if (xVelocities.length != 0) {
-            averageX = averageX / xVelocities.length;
-            this.xAcc = averageX - this.xVel;
-            averageY = averageY / yVelocities.length;
-            this.yAcc = averageY - this.yVel;
+        if (nBoids != 0) {
+            xAvgVel = xAvgVel / nBoids;
+            yAvgVel = yAvgVel / nBoids;
+            xAvgPos = xAvgPos / nBoids;
+            yAvgPos = yAvgPos / nBoids;
+            
+            this.xAcc = xAvgVel - this.xVel + xAvgPos - this.xPos;
+            this.yAcc = yAvgVel - this.yVel + yAvgPos - this.yPos;
         }
-
     }
 
-    cohesion(x, y) {
+    mouseAffinity(x, y) {
         let directionX = x - this.xPos;
         let directionY = y - this.yPos;
-        console.log(x + ' ' + y);
-        this.xAcc += (directionX * mouseAffinity);
-        this.yAcc += (directionY * mouseAffinity);
+        this.xAcc += (directionX * mouseAffinityVal);
+        //
+        this.yAcc += (directionY * mouseAffinityVal);
     }
 
     get x() { return this.xPos; }

@@ -1,5 +1,5 @@
 const flock = [];
-const boidCounter = 200;
+const boidCounter = 100;
 var x = 0;
 var y = 0;
 
@@ -30,9 +30,8 @@ function draw() {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             for (var i = 0; i < boidCounter; i ++) {
-                console.log('! ' + i);
-                flock[i].align(flock);
-                flock[i].cohesion(x, y);
+                flock[i].alignment_and_cohesion(flock);
+                flock[i].mouseAffinity(x, y);
                 flock[i].update(ctx);
 
             }
