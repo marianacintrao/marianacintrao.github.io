@@ -26,7 +26,7 @@ class Boid {
         context.strokeRect(this.xPos, this.yPos, boidSize, boidSize);  
         context.stroke();*/
         context.translate(this.xPos, this.yPos);
-        //context.rotate(this.angle - (Math.PI/2));
+        context.rotate(this.angle + (Math.PI/2));
 
         context.beginPath();
         context.moveTo(0, 0);
@@ -35,7 +35,7 @@ class Boid {
         context.closePath();
         context.stroke();
 
-        //context.rotate(-this.angle + (Math.PI/2));
+        context.rotate(-this.angle - (Math.PI/2));
         context.translate(-this.xPos, -this.yPos);
 
         /*
