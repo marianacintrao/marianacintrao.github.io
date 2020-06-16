@@ -1,5 +1,5 @@
 const flock = [];
-const boidCounter = 100;
+var boidCounter = 100;
 var x = 0;
 var y = 0;
 
@@ -15,7 +15,8 @@ function draw() {
         var ctx = canvas.getContext("2d");
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
-        //ctx.lineWidth = strokeSize;
+        boidCounter = Math.floor(canvas.height * canvas.width / 8000);
+        console.log(boidCounter);
         
         for (var i = 0; i < boidCounter; i ++) {
             b = new Boid(Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height));
