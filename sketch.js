@@ -15,14 +15,12 @@ function draw() {
         var ctx = canvas.getContext("2d");
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
-        ctx.lineWidth = 2;
+        //ctx.lineWidth = strokeSize;
         
         for (var i = 0; i < boidCounter; i ++) {
             b = new Boid(Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height));
             flock.push(b);
         }
-
-        //function drawBoid(boid) { boid.draw(ctx); }
         
         let update = function() {
             requestAnimationFrame(update);
@@ -30,7 +28,7 @@ function draw() {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             for (var i = 0; i < boidCounter; i ++) {
-                flock[i].alignment_and_cohesion(flock);
+                flock[i].alignment_cohesion_separation(flock);
                 flock[i].mouseAffinity(x, y);
                 flock[i].update(ctx);
 

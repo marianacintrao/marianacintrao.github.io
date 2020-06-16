@@ -1,8 +1,11 @@
-const boidSize = 4;
+const boidSize = 8;
 const maxSpeed = 2.5;
-const boidsMinDistance = 30;
+const boidsMinDistance = 40;
 const maxForce = 10;
-const mouseAffinityVal = 0; //should have decimal value
+const mouseAffinityVal = 0.0; //should have decimal value
+const separationRatio = 50;
+const alignmentRatio = 0.5;
+const cohesionRatio = 0.1;
 
 class Boid {
     constructor(xpos, ypos) {
@@ -20,7 +23,8 @@ class Boid {
     }
 
     draw(context) {
-        context.strokeStyle = this.color;
+        //context.strokeStyle = this.color;
+        context.fillStyle = this.color;
         context.translate(this.xPos, this.yPos);
         context.rotate(this.angle + (Math.PI/2));
 
@@ -29,7 +33,8 @@ class Boid {
         context.lineTo(boidSize/2, boidSize*2 );
         context.lineTo(-boidSize/2, boidSize*2);
         context.closePath();
-        context.stroke();
+        //context.stroke();
+        context.fill();
 
         context.rotate(-this.angle - (Math.PI/2));
         context.translate(-this.xPos, -this.yPos);
@@ -44,6 +49,7 @@ class Boid {
         this.angle = Math.atan(this.yVel/this.xVel);
         if (this.xVel < 0) this.angle += Math.PI;
 
+
         this.xVel = maxSpeed * Math.cos(this.angle);
 
         this.yVel = maxSpeed * Math.sin(this.angle);
@@ -55,52 +61,74 @@ class Boid {
         if (this.yPos < 0) this.yPos = window.innerHeight;
         if (this.xPos > window.innerWidth) this.xPos = 0;
         if (this.yPos > window.innerHeight) this.yPos = 0;
-
-
-
     }
 
-    alignment_and_cohesion(boids) {
+    alignment_cohesion_separation(boids) {
+        /* Alignment variables */
         let xVelocities = [];
         let yVelocities = [];
-        let xPositions = [];
-        let yPositions = [];
         let xAvgVel = 0;
         let yAvgVel = 0;
+        /* Cohesion variables*/
+        let xPositions = [];
+        let yPositions = [];
         let xAvgPos = 0;
         let yAvgPos = 0;
+        /* Separation variables */
+        let xDistances = [];
+        let yDistances = [];
+        let xAvgDist = 0;
+        let yAvgDist = 0;
+
         for (let other of boids) {
-            if (other != this && Math.sqrt(Math.pow(this.xPos - other.xPos, 2) +  Math.pow(this.yPos - other.yPos, 2)) < boidsMinDistance) {
+            let xDist = this.xPos - other.xPos;
+            let yDist = this.yPos - other.yPos; 
+            let distance = Math.sqrt(Math.pow(xDist, 2) +  Math.pow(yDist, 2));
+            if (other != this && distance < boidsMinDistance) {
+
                 xVelocities.push(other.xVel);
                 yVelocities.push(other.yVel);
+
                 xPositions.push(other.xPos);
                 yPositions.push(other.yPos);
+
+                xDistances.push(xDist);
+                yDistances.push(yDist);
             }
         }
         let nBoids = xVelocities.length;
         for(var i = 0; i < nBoids; i++) {
             xAvgVel += xVelocities[i];
             yAvgVel += yVelocities[i];
+
             xAvgPos += xPositions[i];
             yAvgPos += yPositions[i];
+            
+            xAvgDist += 1 / xDistances[i] * separationRatio;
+            yAvgDist += 1 / yDistances[i] * separationRatio;
         }
         if (nBoids != 0) {
-            xAvgVel = xAvgVel / nBoids;
-            yAvgVel = yAvgVel / nBoids;
-            xAvgPos = xAvgPos / nBoids;
-            yAvgPos = yAvgPos / nBoids;
-            
-            this.xAcc = xAvgVel - this.xVel + xAvgPos - this.xPos;
-            this.yAcc = yAvgVel - this.yVel + yAvgPos - this.yPos;
+            xAvgVel = ((xAvgVel / nBoids) - this.xVel) * alignmentRatio;
+            yAvgVel = ((yAvgVel / nBoids) - this.yVel) * alignmentRatio;
+
+            xAvgPos = ((xAvgPos / nBoids) - this.xPos) * cohesionRatio;
+            yAvgPos = ((yAvgPos / nBoids) - this.yPos) * cohesionRatio;
+
+            xAvgDist = xAvgDist / nBoids;
+            yAvgDist = yAvgDist / nBoids;
+
+            this.xAcc = xAvgVel + xAvgPos + xAvgDist;
+            this.yAcc = yAvgVel + yAvgPos + yAvgDist;
         }
     }
 
     mouseAffinity(x, y) {
-        let directionX = x - this.xPos;
-        let directionY = y - this.yPos;
-        this.xAcc += (directionX * mouseAffinityVal);
-        //
-        this.yAcc += (directionY * mouseAffinityVal);
+        if (x != 0 && y!= 0) {
+            let directionX = x - this.xPos;
+            let directionY = y - this.yPos;
+            this.xAcc += (directionX * mouseAffinityVal);
+            this.yAcc += (directionY * mouseAffinityVal);
+        }
     }
 
     get x() { return this.xPos; }
