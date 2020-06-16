@@ -1,7 +1,16 @@
 const flock = [];
-const boidCounter = 50;
+const boidCounter = 100;
+var x = 0;
+var y = 0;
+
+let updateCoords = function(e) {
+    x = e.clientX;
+    y = e.clientY;
+}
+
 function draw() {
     var canvas = document.getElementById("canvas");
+    document.querySelector("canvas").addEventListener("mousemove", updateCoords);
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
         canvas.width  = window.innerWidth;
@@ -12,16 +21,19 @@ function draw() {
             flock.push(b);
         }
 
-        function drawBoid(boid) { boid.draw(ctx); }
+        //function drawBoid(boid) { boid.draw(ctx); }
         
         let update = function() {
             requestAnimationFrame(update);
-        ctx.fillStyle = "grey";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "grey";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
             for (var i = 0; i < boidCounter; i ++) {
                 console.log('! ' + i);
                 flock[i].update(ctx);
                 flock[i].align(flock);
+                flock[i].cohesion(x, y);
+
             }
         }
         

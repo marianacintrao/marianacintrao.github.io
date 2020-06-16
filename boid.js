@@ -1,15 +1,14 @@
-const boidSize = 7;
-const maxSpeed = 3;
-const minSpeed = 1;
-const boidsMinDistance = 50;
-const maxForce = 2;
+const boidSize = 4;
+const maxSpeed = 2;
+const boidsMinDistance = 40;
+const maxForce = 10;
 
 class Boid {
     constructor(xpos, ypos) {
         this.xPos = xpos;
         this.yPos = ypos;
 
-        let speed = Math.random()*(maxSpeed - minSpeed) + minSpeed;
+        let speed = Math.random()*maxSpeed;
         //this.speed = speed;
 
         let angle = Math.random()*2*Math.PI;
@@ -23,11 +22,23 @@ class Boid {
     }
 
     draw(context) {
-        context.strokeStyle = 'white';
+        context.strokeStyle = 'white';/*
         context.strokeRect(this.xPos, this.yPos, boidSize, boidSize);  
+        context.stroke();*/
+        context.translate(this.xPos, this.yPos);
+        //context.rotate(this.angle - (Math.PI/2));
+
+        context.beginPath();
+        context.moveTo(0, 0);
+        context.lineTo(boidSize/2, boidSize*2 );
+        context.lineTo(-boidSize/2, boidSize*2);
+        context.closePath();
         context.stroke();
+
+        //context.rotate(-this.angle + (Math.PI/2));
+        context.translate(-this.xPos, -this.yPos);
+
         /*
-        ctx.rotate(angle);
         beginShape();
         vertex(0, -this.r * 2);
         vertex(-this.r, this.r * 2);
@@ -39,17 +50,16 @@ class Boid {
 
     update(context) {
         this.draw(context);
-        console.log('xp ' + this.xPos + ' xv ' + this.xVel + ' yp ' + this.yPos + ' yv ' + this.yVel);
+        //console.log('xp ' + this.xPos + ' xv ' + this.xVel + ' yp ' + this.yPos + ' yv ' + this.yVel);
         
-        //console.log('xv '+ this.xVel + ' xa '+ this.xAcc);
         this.xVel = this.xAcc + this.xVel;
         this.yVel = this.yAcc + this.yVel;
         this.angle = Math.atan(this.yVel/this.xVel);
-        if (this.xVel / Math.cos(this.angle) > maxSpeed || -maxSpeed > this.xVel / Math.cos(this.angle)) {
-            this.xVel = maxSpeed * Math.cos(this.angle);
-            this.yVel = maxSpeed * Math.sin(this.angle);
+        //if (this.xVel / Math.cos(this.angle) > maxSpeed || -maxSpeed > this.xVel / Math.cos(this.angle)) {
+        this.xVel = maxSpeed * Math.cos(this.angle);
+        this.yVel = maxSpeed * Math.sin(this.angle);
             //console.log("----" + this.xVel + ' ' + this.yVel);
-        }
+        //}
 
         this.xPos += this.xVel;
         this.yPos += this.yVel;
@@ -81,10 +91,18 @@ class Boid {
         }
         if (xVelocities.length != 0) {
             averageX = averageX / xVelocities.length;
-            this.xAcc = ((averageX - this.xVel )+ this.xAcc)/2;
+            this.xAcc = averageX - this.xVel;
             averageY = averageY / yVelocities.length;
-            this.yAcc = ((averageY - this.yVel) + this.yAcc)/2;
+            this.yAcc = averageY - this.yVel;
         }
+    }
+
+    cohesion(x, y) {
+        let directionX = x - this.xPos;
+        let directionY = y - this.yPos;
+        console.log(x + ' ' + y);
+        this.xAcc += directionX;
+        this.yAcc += directionY;
     }
 
     get x() { return this.xPos; }
