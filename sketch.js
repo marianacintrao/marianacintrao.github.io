@@ -1,5 +1,5 @@
 const flock = [];
-const boidCounter = 100;
+const boidCounter = 200;
 var x = 0;
 var y = 0;
 
@@ -15,6 +15,7 @@ function draw() {
         var ctx = canvas.getContext("2d");
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
+        ctx.lineWidth = 2;
         
         for (var i = 0; i < boidCounter; i ++) {
             b = new Boid(Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height));
@@ -25,14 +26,14 @@ function draw() {
         
         let update = function() {
             requestAnimationFrame(update);
-            ctx.fillStyle = "grey";
+            ctx.fillStyle = "white";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             for (var i = 0; i < boidCounter; i ++) {
                 console.log('! ' + i);
-                flock[i].update(ctx);
                 flock[i].align(flock);
                 flock[i].cohesion(x, y);
+                flock[i].update(ctx);
 
             }
         }

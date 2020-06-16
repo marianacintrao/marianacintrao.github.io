@@ -1,30 +1,26 @@
 const boidSize = 4;
-const maxSpeed = 2;
-const boidsMinDistance = 40;
+const maxSpeed = 3;
+const boidsMinDistance = 30;
 const maxForce = 10;
+const mouseAffinity = 5;
 
 class Boid {
     constructor(xpos, ypos) {
+        this.color = 'rgb(' + Math.random()*255 + ', ' + Math.random()*255 + ', ' + Math.random()*255 + ')';
+        this.angle = Math.random()*2*Math.PI;
+        
         this.xPos = xpos;
         this.yPos = ypos;
-
-        let speed = Math.random()*maxSpeed;
-        //this.speed = speed;
-
-        let angle = Math.random()*2*Math.PI;
-        this.angle = angle;
         
-        this.xVel = Math.cos(angle)*speed;
-        this.yVel = Math.sin(angle)*speed;
+        this.xVel = Math.cos(this.angle)*maxSpeed;
+        this.yVel = Math.sin(this.angle)*maxSpeed;
 
         this.xAcc = 0;
         this.yAcc = 0;
     }
 
     draw(context) {
-        context.strokeStyle = 'white';/*
-        context.strokeRect(this.xPos, this.yPos, boidSize, boidSize);  
-        context.stroke();*/
+        context.strokeStyle = this.color;
         context.translate(this.xPos, this.yPos);
         context.rotate(this.angle + (Math.PI/2));
 
@@ -37,40 +33,29 @@ class Boid {
 
         context.rotate(-this.angle - (Math.PI/2));
         context.translate(-this.xPos, -this.yPos);
-
-        /*
-        beginShape();
-        vertex(0, -this.r * 2);
-        vertex(-this.r, this.r * 2);
-        vertex(this.r, this.r * 2);
-        endShape(CLOSE);
-  */
-        //pop();
     }
 
-    update(context) {
+    update(context, x, y) {
         this.draw(context);
         //console.log('xp ' + this.xPos + ' xv ' + this.xVel + ' yp ' + this.yPos + ' yv ' + this.yVel);
+
         
-        this.xVel = this.xAcc + this.xVel;
-        this.yVel = this.yAcc + this.yVel;
+        this.xVel += this.xAcc;
+        this.yVel += this.yAcc;
+
         this.angle = Math.atan(this.yVel/this.xVel);
-        //if (this.xVel / Math.cos(this.angle) > maxSpeed || -maxSpeed > this.xVel / Math.cos(this.angle)) {
         this.xVel = maxSpeed * Math.cos(this.angle);
         this.yVel = maxSpeed * Math.sin(this.angle);
-            //console.log("----" + this.xVel + ' ' + this.yVel);
-        //}
+
 
         this.xPos += this.xVel;
         this.yPos += this.yVel;
-        //this.xPos += this.xVel + this.xAcc;
-        //this.yPos += this.yVel + this.yAcc;
+
         if (this.xPos < 0) this.xPos = window.innerWidth;
         if (this.yPos < 0) this.yPos = window.innerHeight;
         if (this.xPos > window.innerWidth) this.xPos = 0;
         if (this.yPos > window.innerHeight) this.yPos = 0;
 
-        //console.log('xp ' + this.xPos + 'xv ' + this.xVel + 'yp ' + this.yPos + 'yv ' + this.yVel);
     }
 
     align(boids) {
@@ -95,14 +80,15 @@ class Boid {
             averageY = averageY / yVelocities.length;
             this.yAcc = averageY - this.yVel;
         }
+
     }
 
     cohesion(x, y) {
         let directionX = x - this.xPos;
         let directionY = y - this.yPos;
         console.log(x + ' ' + y);
-        this.xAcc += directionX;
-        this.yAcc += directionY;
+        this.xAcc += (directionX * mouseAffinity);
+        this.yAcc += (directionY * mouseAffinity);
     }
 
     get x() { return this.xPos; }
