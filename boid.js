@@ -6,6 +6,7 @@ const mouseAffinityVal = 0.1; //should have decimal value
 const separationRatio = 50;
 const alignmentRatio = 0.5;
 const cohesionRatio = 0.1;
+const marginsPadding = 50;
 
 class Boid {
     constructor(xpos, ypos) {
@@ -57,8 +58,8 @@ class Boid {
         this.xPos += this.xVel;
         this.yPos += this.yVel;
 
-        if (this.xPos < 0) this.xPos = window.innerWidth;
-        if (this.yPos < 0) this.yPos = window.innerHeight;
+        if (this.xPos < -marginsPadding) this.xPos = window.innerWidth;
+        if (this.yPos < -marginsPadding) this.yPos = window.innerHeight;
         if (this.xPos > window.innerWidth) this.xPos = 0;
         if (this.yPos > window.innerHeight) this.yPos = 0;
     }
