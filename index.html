@@ -6,7 +6,15 @@
     <title>Document</title>
 </head>
 <body onload="draw();">
-    <canvas id="canvas" width="800" height="800"></canvas>
+    <div id="canvas-container">
+        <canvas id="canvas" width="800" height="800"></canvas>
+        <div id="canvas-overlay">
+            <h1>click anywhere to create new boid</h1>
+        </div>
+    </div>
+
+
+
     <script src="sketch.js"></script>
     <script src="boid.js"></script>
     <link rel="stylesheet" href="./style.css">
