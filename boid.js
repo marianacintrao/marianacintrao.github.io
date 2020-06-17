@@ -1,12 +1,13 @@
 const boidSize = 8;
 const maxSpeed = 2.5;
 const boidsViewRadius = 40;
+const mouseViewRadius = 30;
 const maxForce = 10;
 const mouseAffinityVal = 0.1; //should have decimal value
 const separationRatio = 50;
 const alignmentRatio = 0.5;
 const cohesionRatio = 0.1;
-const marginsPadding = 50;
+const canvasPadding = 15;
 
 class Boid {
     constructor(xpos, ypos) {
@@ -58,10 +59,10 @@ class Boid {
         this.xPos += this.xVel;
         this.yPos += this.yVel;
 
-        if (this.xPos < -marginsPadding) this.xPos = window.innerWidth;
-        if (this.yPos < -marginsPadding) this.yPos = window.innerHeight;
-        if (this.xPos > window.innerWidth) this.xPos = 0;
-        if (this.yPos > window.innerHeight) this.yPos = 0;
+        if (this.xPos < -canvasPadding) this.xPos = window.innerWidth + canvasPadding;
+        if (this.yPos < -canvasPadding) this.yPos = window.innerHeight + canvasPadding;
+        if (this.xPos > window.innerWidth + canvasPadding) this.xPos = -canvasPadding;
+        if (this.yPos > window.innerHeight + canvasPadding) this.yPos = -canvasPadding;
     }
 
 
@@ -131,7 +132,7 @@ class Boid {
         if (x != 0 && y!= 0) {
             let directionX = this.xPos - x;
             let directionY = this.yPos - y;
-            if (Math.sqrt(Math.pow(directionX, 2), Math.pow(directionY, 2)) < boidsViewRadius) {
+            if (Math.sqrt(Math.pow(directionX, 2), Math.pow(directionY, 2)) < mouseViewRadius) {
                 this.xAcc += (directionX * mouseAffinityVal);
                 this.yAcc += (directionY * mouseAffinityVal);
             }

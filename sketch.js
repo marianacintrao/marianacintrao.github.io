@@ -24,7 +24,7 @@ function draw() {
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        boidCounter = Math.floor(canvas.height * canvas.width / 8000);
+        boidCounter = Math.floor(canvas.height * canvas.width / 6000);
         
         for (var i = 0; i < boidCounter; i ++) {
             b = new Boid(Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height));

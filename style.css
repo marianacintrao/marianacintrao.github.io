@@ -9,9 +9,6 @@ body, html {
 #canvas-container {
     position: relative;
     background-color: black;
-    align-items: center;
-    justify-content: middle;
-    vertical-align: middle;
 }
 
 #canvas-container canvas, #canvas-overlay {
@@ -21,6 +18,6 @@ body, html {
 #canvas-overlay {
     transform: translate(50vw, 50vh) translate(-50%, -50%);
     position: absolute;
-    /*padding: 50px;
-    background-color: gray;*/
+    text-align: center;
+    user-select: none;
 }
