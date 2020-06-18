@@ -3,7 +3,11 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+}
+
+html {
+    
+    overflow-y: scroll; overflow-x:hidden;
 }
 
 #canvas-container {
@@ -11,8 +15,13 @@ body, html {
     background-color: black;
 }
 
-#canvas-container canvas, #canvas-overlay {
+#canvas-container canvas {
     position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin:auto;
 }
 
 #canvas-overlay {
@@ -20,4 +29,9 @@ body, html {
     position: absolute;
     text-align: center;
     user-select: none;
+    pointer-events: none;
+}
+
+#showcase {
+    text-align: center;
 }

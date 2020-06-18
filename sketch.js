@@ -1,47 +1,63 @@
 const flock = [];
-var boidCounter;
-var x = 0;
-var y = 0;
+const overlayPadding = 35;
+var ptsPerBoid = 3000;
+var boidCounter = 0;
+var mouseX = 0;
+var mouseY = 0;
 
-let updateCoords = function(e) {
-    x = e.clientX;
-    y = e.clientY;
+function updateCoords(e) {
+    var doc = document.documentElement;
+    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    mouseX = e.clientX;
+    mouseY = e.clientY + top;
 }
 
 function draw() {
     var canvas = document.getElementById("canvas");
+    
     document.querySelector("canvas").addEventListener("mousemove", updateCoords);
 
+    /* add a new boid when canvas is clicked */
     canvas.onmousedown = function(e) {
         console.log(boidCounter);
-        b = new Boid(e.clientX, e.clientY);
+        b = new Boid(mouseX, mouseY);
         boidCounter++;
         flock.push(b);
     }
     
+    
     if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        boidCounter = Math.floor(canvas.height * canvas.width / 6000);
+        resizeCanvas();
         
+        /* get initian number of boids */
+        boidCounter = Math.floor(canvas.height * canvas.width / ptsPerBoid);
+        
+        /* resize canvas if window is resized */
+        window.addEventListener('resize', resizeCanvas, false);
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        /* create initial boids */
         for (var i = 0; i < boidCounter; i ++) {
             b = new Boid(Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height));
             flock.push(b);
         }
         
-        let update = function() {
+        /* draw and update boids positions */
+        function update() {
             requestAnimationFrame(update);
             ctx.fillStyle = "white";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+
             for (var i = 0; i < boidCounter; i ++) {
                 flock[i].alignment_cohesion_separation(flock);
-                flock[i].mouseAffinity(x, y);
+                flock[i].mouseAffinity(mouseX, mouseY);
                 flock[i].update(ctx);
             }
         }
-        
         update();
     }
 }
