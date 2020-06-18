@@ -1,6 +1,6 @@
 const flock = [];
 const overlayPadding = 35;
-var ptsPerBoid = 3000;
+var ptsPerBoid = 6000;
 var boidCounter = 0;
 var mouseX = 0;
 var mouseY = 0;

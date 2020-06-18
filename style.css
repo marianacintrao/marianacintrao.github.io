@@ -6,13 +6,23 @@ body, html {
 }
 
 html {
-    
-    overflow-y: scroll; overflow-x:hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
 }
 
-#canvas-container {
-    position: relative;
-    background-color: black;
+#canvas-overlay {
+    transform: translate(50vw, 50vh) translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+    overflow: auto;
+    resize: both;
+}
+
+#canvas-overlay h2 h3 {
+    overflow: auto;
+    resize: both;
 }
 
 #canvas-container canvas {
@@ -22,14 +32,6 @@ html {
     left: 0;
     right: 0;
     margin:auto;
-}
-
-#canvas-overlay {
-    transform: translate(50vw, 50vh) translate(-50%, -50%);
-    position: absolute;
-    text-align: center;
-    user-select: none;
-    pointer-events: none;
 }
 
 #showcase {

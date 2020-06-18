@@ -1,5 +1,5 @@
 const canvasPadding = 15;
-const boidSize = 8;
+const boidSize = 12;
 const maxSpeed = 2.5;
 const boidsViewRadius = 40;
 const mouseViewRadius = 30;
@@ -46,8 +46,10 @@ class Boid {
         this.xVel += this.xAcc;
         this.yVel += this.yAcc;
         
+        let angle = this.angle;
         this.angle = Math.atan(this.yVel/this.xVel);
         if (this.xVel < 0) this.angle += Math.PI;
+        this.angle = (angle + this.angle) / 2;
 
         var d = Math.sqrt(Math.pow(this.xVel, 2) + Math.pow(this.yVel, 2));
         if (maxSpeed < d) {
@@ -108,8 +110,8 @@ class Boid {
             xAvgPos += xPositions[i];
             yAvgPos += yPositions[i];
             
-            xAvgDist += 1 / xDistances[i] * separationRatio;
-            yAvgDist += 1 / yDistances[i] * separationRatio;
+            if (xDistances[i] != 0) xAvgDist += 1 / xDistances[i] * separationRatio;
+            if (yDistances[i] != 0) yAvgDist += 1 / yDistances[i] * separationRatio;
         }
         if (nBoids != 0) {
             xAvgVel = ((xAvgVel / nBoids) - this.xVel) * alignmentRatio;
