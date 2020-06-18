@@ -17,7 +17,6 @@ html {
     text-align: center;
     pointer-events: none;
     overflow: auto;
-    resize: both;
 }
 
 #canvas-overlay h2 h3 {
