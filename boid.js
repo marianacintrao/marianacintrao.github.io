@@ -66,8 +66,6 @@ class Boid {
         if (this.yPos > window.innerHeight + canvasPadding) this.yPos = -canvasPadding;
     }
 
-
-
     alignment_cohesion_separation(boids) {
         /* Alignment variables */
         let xVelocities = [];
@@ -93,7 +91,6 @@ class Boid {
 
                 xVelocities.push(other.xVel);
                 yVelocities.push(other.yVel);
-
                 
                 xPositions.push(other.xPos);
                 yPositions.push(other.yPos);
