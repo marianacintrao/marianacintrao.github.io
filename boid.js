@@ -1,12 +1,17 @@
 const canvasPadding = 15;
 const boidSize = 12;
-const maxSpeed = 2.5;
 const boidsViewRadius = 40;
 const mouseViewRadius = 30;
 const mouseAffinityVal = 15; 
 const separationRatio = 50;
 const alignmentRatio = 0.5;
 const cohesionRatio = 0.1;
+var maxSpeed = 2.5;
+
+var slider = document.getElementById("boidsSpeed");
+slider.oninput = function() {
+  maxSpeed = this.value;
+}
 
 class Boid {
     constructor(xpos, ypos) {
@@ -28,7 +33,6 @@ class Boid {
         context.translate(this.xPos, this.yPos);
         context.rotate(this.angle + (Math.PI/2));
 
-
         context.beginPath();
         context.moveTo(0, 0);
         context.lineTo(boidSize/2, boidSize*2 );
@@ -38,6 +42,13 @@ class Boid {
 
         context.rotate(-this.angle - (Math.PI/2));
         context.translate(-this.xPos, -this.yPos);
+    }
+
+    coordinatesReset() {
+        if (this.xPos < -canvasPadding) this.xPos = window.innerWidth + canvasPadding;
+        if (this.yPos < -canvasPadding) this.yPos = window.innerHeight + canvasPadding;
+        if (this.xPos > window.innerWidth + canvasPadding) this.xPos = -canvasPadding;
+        if (this.yPos > window.innerHeight + canvasPadding) this.yPos = -canvasPadding;
     }
 
     update(context, x, y) {
@@ -51,7 +62,7 @@ class Boid {
         if (this.xVel < 0) this.angle += Math.PI;
         this.angle = (angle + this.angle) / 2;
 
-        var d = Math.sqrt(Math.pow(this.xVel, 2) + Math.pow(this.yVel, 2));
+        var d = this.distance(this.xVel, this.yVel);
         if (maxSpeed < d) {
             this.xVel = maxSpeed * Math.cos(this.angle);
             this.yVel = maxSpeed * Math.sin(this.angle);
@@ -60,10 +71,7 @@ class Boid {
         this.xPos += this.xVel;
         this.yPos += this.yVel;
 
-        if (this.xPos < -canvasPadding) this.xPos = window.innerWidth + canvasPadding;
-        if (this.yPos < -canvasPadding) this.yPos = window.innerHeight + canvasPadding;
-        if (this.xPos > window.innerWidth + canvasPadding) this.xPos = -canvasPadding;
-        if (this.yPos > window.innerHeight + canvasPadding) this.yPos = -canvasPadding;
+        this.coordinatesReset();
     }
 
     alignment_cohesion_separation(boids) {
@@ -122,7 +130,6 @@ class Boid {
 
             this.xAcc = xAvgVel + xAvgPos + xAvgDist;
             this.yAcc = yAvgVel + yAvgPos + yAvgDist;
-
         }
     }
 

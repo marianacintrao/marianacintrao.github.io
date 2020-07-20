@@ -7,14 +7,28 @@
 </head>
 <body onload="draw();">
     <div id="canvas-overlay">
-        <h2>click anywhere to create new particle</h2>
-        <h3>particles will steer away from the mouse</h3>
+        <h2>Hi, I'm Mariana</h2>
+        <h3>Scroll down to find out absolutely nothing</h3>
     </div>
     <div>
         <canvas id="canvas" width="800" height="800"></canvas>
     </div>
-    <div id="showcase">
-        <h5>this is still in progress..</h5>
+
+    <div class="popup">
+        <button onclick="popup()" class="popbtn">?</button>
+        <div id="myPopup" class="popup-content">
+                <div id="popup-tab">
+                    <button onclick="popout()" class="closebtn">✖</button>
+                </div>
+                <div id="popup-info">
+                    <h5>This is a self-indulgent flocking simulation!</h5>
+                    <h5>Click anywhere on the canvas to create a new particle. Particles will steer away from the mouse.</h5>
+                    <h5>Drag to speed up the particles:</h5>
+                    <div class="slidecontainer">
+                        <input type="range" min="1.5" max="11.5" value="2.5" class="slider" id="boidsSpeed">
+                    </div>
+                </div>
+        </div>
     </div>
     <div id="showcase">
         <h5>this is still in progress..</h5>
@@ -22,8 +36,13 @@
     <div id="showcase">
         <h5>this is still in progress..</h5>
     </div>
+    <div id="showcase">
+        <h5>this is still in progress..</h5>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="sketch.js"></script>
     <script src="boid.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="./style.css">
 </body>
 </html>
