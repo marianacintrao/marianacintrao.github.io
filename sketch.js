@@ -19,7 +19,7 @@ function draw() {
 
     /* add a new boid when canvas is clicked */
     canvas.onmousedown = function(e) {
-        console.log(boidCounter);
+        //console.log(boidCounter);
         b = new Boid(mouseX, mouseY);
         boidCounter++;
         flock.push(b);
@@ -45,6 +45,8 @@ function draw() {
             b = new Boid(Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height));
             flock.push(b);
         }
+        //initialBoids = boidCounter;
+
         
         /* draw and update boids positions */
         function update() {

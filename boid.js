@@ -6,11 +6,12 @@ const mouseAffinityVal = 15;
 const separationRatio = 50;
 const alignmentRatio = 0.5;
 const cohesionRatio = 0.1;
+const speedFactor = 10;
 var maxSpeed = 2.5;
 
 var slider = document.getElementById("boidsSpeed");
 slider.oninput = function() {
-  maxSpeed = this.value;
+    maxSpeed = this.value/speedFactor;
 }
 
 class Boid {
