@@ -16,20 +16,21 @@ html {
 }
 
 /*::::::::::::::::::::::::::::::::::::::::::::::::
-                 INITIAL TEXT
+                    HEADER
 ::::::::::::::::::::::::::::::::::::::::::::::::*/
 
 #canvas-overlay {
     position: absolute;
-    transform: translate(50vw, 50vh) translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
     text-align: center;
     pointer-events: none;
     overflow: auto;
 }
 
 #canvas-overlay h2 h3 {
-    padding-left: 50px;
-    padding-right: 50px;
     overflow: auto;
     resize: both;
 }
@@ -149,8 +150,45 @@ html {
 
 
 /*::::::::::::::::::::::::::::::::::::::::::::::::
-                    STUFF
+                    BODY
 ::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.split-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: white;
+}
+
+.split-section div {
+    flex: 1 1 450px;
+    display: grid;
+    /* flex-wrap: wrap; */
+    place-items: center;
+    background-color: blueviolet;
+    margin: 0px;
+}
+
+.split-section .title {
+    height: 100vh;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+@media only screen and (max-width: 920px) {
+    .split-section .title {
+        display: grid;
+        place-items: center;
+    
+    }
+    .split-section .title {
+        position: relative;
+    }
+}
+
+.split-section .text {
+}
 
 #showcase {
     text-align: center;
