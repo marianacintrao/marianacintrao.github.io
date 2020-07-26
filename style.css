@@ -31,8 +31,6 @@ body, html {
 * {
     margin: 0;
     box-sizing: border-box;
-    transition: all 0.2s;
-    -webkit-transition: all 0.2s;
 }
 
 body {
@@ -60,13 +58,10 @@ nav {
     align-items: center;
     min-height: 10vh;
     background-color: none;
-    /* background-color: var(--color1); */
     position: fixed;
     width: 100vw;
     z-index: 2;
 }
-
-nav 
 
 .switch { 
     /* para alterar o tamanho switch basta alterar estas dimensoes */
@@ -78,6 +73,11 @@ nav
     border: 4px solid var(--basecolor1);
     background-color: var(--highlightcolor);
     border-radius: 5vh;
+    
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .switch::after {
@@ -90,11 +90,16 @@ nav
     background-color: var(--basecolor2);
     top: calc(1vh - 4px); 
     left: calc(1vh - 4px);
-    transition: all 0.2s;
+
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .checkbox:checked + .switch::after {
     left: calc(50% - 4px); 
+
 }
 
 .checkbox:checked + .switch {
@@ -104,6 +109,7 @@ nav
 .checkbox { 
     display: none;
 }
+
 /*::::::::::::::::::::::::::::::::::::::::::::::::
                     HEADER
 ::::::::::::::::::::::::::::::::::::::::::::::::*/
