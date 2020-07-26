@@ -1,4 +1,4 @@
-const canvasPadding = 15;
+const canvasMargin = 15;
 const boidSize = 12;
 const boidsViewRadius = 40;
 const mouseViewRadius = 30;
@@ -9,6 +9,11 @@ const cohesionRatio = 0.1;
 const speedFactor = 10;
 var maxSpeed = 2.5;
 
+var strokeColor = "black";
+
+// var colors = ["#0F4256", "#BDF2D5", "#BF8049", "#DB9F8D", "#D96A6A"];
+// var colors = ["#0F4256", "#BDF2D5", "#D96A6A", "#BF8049"];
+
 var slider = document.getElementById("boidsSpeed");
 slider.oninput = function() {
     maxSpeed = this.value/speedFactor;
@@ -16,6 +21,7 @@ slider.oninput = function() {
 
 class Boid {
     constructor(xpos, ypos) {
+        // this.color = colors[Math.round(Math.random()*colors.length)];
         this.color = 'rgb(' + Math.random()*255 + ', ' + Math.random()*255 + ', ' + Math.random()*255 + ')';
         this.angle = Math.random()*2*Math.PI;
         
@@ -31,6 +37,8 @@ class Boid {
 
     draw(context) {
         context.fillStyle = this.color;
+        context.strokeStyle = strokeColor;
+        context.lineWidth = 2;
         context.translate(this.xPos, this.yPos);
         context.rotate(this.angle + (Math.PI/2));
 
@@ -40,16 +48,17 @@ class Boid {
         context.lineTo(-boidSize/2, boidSize*2);
         context.closePath();
         context.fill();
+        context.stroke();
 
         context.rotate(-this.angle - (Math.PI/2));
         context.translate(-this.xPos, -this.yPos);
     }
 
     coordinatesReset() {
-        if (this.xPos < -canvasPadding) this.xPos = window.innerWidth + canvasPadding;
-        if (this.yPos < -canvasPadding) this.yPos = window.innerHeight + canvasPadding;
-        if (this.xPos > window.innerWidth + canvasPadding) this.xPos = -canvasPadding;
-        if (this.yPos > window.innerHeight + canvasPadding) this.yPos = -canvasPadding;
+        if (this.xPos < -canvasMargin) this.xPos = window.innerWidth + canvasMargin;
+        if (this.yPos < -canvasMargin) this.yPos = window.innerHeight + canvasMargin;
+        if (this.xPos > window.innerWidth + canvasMargin) this.xPos = -canvasMargin;
+        if (this.yPos > window.innerHeight + canvasMargin) this.yPos = -canvasMargin;
     }
 
     update(context, x, y) {

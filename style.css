@@ -1,12 +1,42 @@
+:root {
+    --basecolor1: black;
+    --basecolor2: white;
+    --highlightcolor: #BDF2D5;
+
+    --color1: #0F4256;
+    --color2: #BDF2D5;
+    --color3: #BF8049;
+    --color4: #DB9F8D;
+    --color5: #D96A6A;
+}
+
+[data-theme="dark"] {
+    --basecolor1: white;
+    --basecolor2: black;
+    --highlightcolor: #D96A6A;
+}
+
 body, html {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: var(--basecolor1);
+    background-color: var(--basecolor2);
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
 }
 
 body {
-    font-family: 'Muli', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 html {
@@ -15,6 +45,65 @@ html {
     position: relative;
 }
 
+.highlight {
+    background: linear-gradient(180deg,rgba(255,255,255,0) 50%, var(--highlightcolor) 50%);
+}
+
+/*::::::::::::::::::::::::::::::::::::::::::::::::
+                    NAV
+::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+nav {
+    top: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: none;
+    /* background-color: var(--color1); */
+    position: fixed;
+    width: 100vw;
+    z-index: 2;
+}
+
+nav 
+
+.switch { 
+    /* para alterar o tamanho switch basta alterar estas dimensoes */
+    box-sizing: content-box;
+    position: relative;
+    display: inline-block;
+    width: 10vh;
+    height: 6vh;
+    border: 4px solid var(--basecolor1);
+    background-color: var(--highlightcolor);
+    border-radius: 5vh;
+}
+
+.switch::after {
+    content: '';
+    position: absolute;
+    width: calc(50% - 1vh);
+    height: calc(100% - 2vh);
+    border-radius: 50%;
+    border: 4px solid var(--basecolor1);
+    background-color: var(--basecolor2);
+    top: calc(1vh - 4px); 
+    left: calc(1vh - 4px);
+    transition: all 0.2s;
+}
+
+.checkbox:checked + .switch::after {
+    left: calc(50% - 4px); 
+}
+
+.checkbox:checked + .switch {
+    background-color: var(--highlightcolor);
+}
+
+.checkbox { 
+    display: none;
+}
 /*::::::::::::::::::::::::::::::::::::::::::::::::
                     HEADER
 ::::::::::::::::::::::::::::::::::::::::::::::::*/
@@ -28,6 +117,11 @@ html {
     text-align: center;
     pointer-events: none;
     overflow: auto;
+    color: var(--basecolor1)
+}
+
+#canvas-overlay div {
+    margin: 30px;
 }
 
 #canvas-overlay h2 h3 {
@@ -41,7 +135,7 @@ html {
 
 #canvas-container canvas {
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -54,18 +148,22 @@ html {
 
 .popbtn {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     bottom: 0;
     transform: translate(50px, -50px); 
-    background-color: black;
-    color: white;
+    background-color: var(--basecolor2);
+    color: var(--basecolor1);
     font-size: 30px;
     text-align: center center;
-    border-radius: 30px;
-    border: none;
+    /* border-radius: 30px; */
+    /* border: none; */
+    box-shadow: 5px 5px var(--highlightcolor); 
+    border: 4px solid var(--basecolor1);
     outline: none;
     cursor: pointer;
+    user-select: none;
+    font-weight: bold;
 }
 
 .popbtn:hover {
@@ -78,11 +176,13 @@ html {
     position: absolute;
     bottom: 0;
     transform: translate(50px, -50px); 
-    background-color: white;
+    background-color: var(--basecolor2);
     width: 320px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border: 4px solid #000;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */  
+    box-shadow: 5px 5px var(--highlightcolor); 
+    border: 4px solid var(--basecolor1);
     z-index: 1;
+    user-select: none;
 }
 
 
@@ -95,15 +195,15 @@ html {
 .popup-content #popup-tab {
     width: 100%;
     display: inline-block;
-    background-color: black;
+    background-color: var(--basecolor1);
 }
 
 .popup-content .closebtn {
     /* float: right; */
     width: 30px;
     height: 35px;
-    background-color: black;
-    color: white;
+    background-color: var(--basecolor1);
+    color: var(--basecolor2);
     font-size: 24px;
     border: none;
     outline: none;
@@ -114,7 +214,8 @@ html {
     padding: 10px;
 }
 .popup-content h5 {
-    color: black;
+    margin: 20px 0px;
+    color: var(--basecolor1);
     padding: 0px 20px;
     text-decoration: none;
     display: block;
@@ -137,7 +238,7 @@ html {
       
       /* The slider itself */
     .slider {
-        width: calc(100% - 40px); /* Full-width */
+        width: 100%; /* Full-width */
         height: 25px; /* Specified height */
         outline: none; /* Remove outline */
         opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
@@ -152,12 +253,16 @@ html {
 /*::::::::::::::::::::::::::::::::::::::::::::::::
                     BODY
 ::::::::::::::::::::::::::::::::::::::::::::::::*/
+section {
+    margin: 0px;
+}
 
 .split-section {
+    width: 100vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    color: white;
+    color: var(--basecolor1);
 }
 
 .split-section div {
@@ -165,7 +270,7 @@ html {
     display: grid;
     /* flex-wrap: wrap; */
     place-items: center;
-    background-color: blueviolet;
+    background-color: var(--basecolor2);
     margin: 0px;
 }
 
@@ -174,6 +279,18 @@ html {
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
+    display: grid;
+    place-items: center;
+}
+
+.split-section .title h1 {
+    font-size: 10vh;
+}
+
+.split-section .title img {
+    position: relative;
+    width: 100%;
+    margin: 0;
 }
 
 @media only screen and (max-width: 920px) {
@@ -185,9 +302,6 @@ html {
     .split-section .title {
         position: relative;
     }
-}
-
-.split-section .text {
 }
 
 #showcase {

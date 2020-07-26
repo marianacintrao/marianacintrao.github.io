@@ -4,6 +4,7 @@ var ptsPerBoid = 6000;
 var boidCounter = 0;
 var mouseX = 0;
 var mouseY = 0;
+var canvasBackground = "white";
 
 function updateCoords(e) {
     var doc = document.documentElement;
@@ -51,7 +52,7 @@ function draw() {
         /* draw and update boids positions */
         function update() {
             requestAnimationFrame(update);
-            ctx.fillStyle = "white";
+            ctx.fillStyle = canvasBackground;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             for (var i = 0; i < boidCounter; i ++) {
