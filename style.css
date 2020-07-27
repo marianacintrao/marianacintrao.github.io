@@ -60,9 +60,6 @@ nav {
     z-index: 2;
 }
 
-.nav-active {
-    transform: translateX(0%);
-}
 
 .nav-items {
     color: var(--basecolor1);
@@ -79,6 +76,9 @@ nav {
     transition: transform 0.2s ease-in;
 }
 
+.nav-active {
+    transform: translateX(0%);
+}
     /*::::::::::::::::::::::::::::::::::::::::::::::::
                     LIGHT/DARK SWITCH
     ::::::::::::::::::::::::::::::::::::::::::::::::*/
