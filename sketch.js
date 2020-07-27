@@ -6,12 +6,14 @@ var mouseX = 0;
 var mouseY = 0;
 var canvasBackground = "white";
 
+/*  gets mouse position on canvas */
 function updateCoords(e) {
     var doc = document.documentElement;
     var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
     mouseX = e.clientX;
     mouseY = e.clientY + top;
 }
+
 
 function draw() {
     var canvas = document.getElementById("canvas");
@@ -20,7 +22,6 @@ function draw() {
 
     /* add a new boid when canvas is clicked */
     canvas.onmousedown = function(e) {
-        //console.log(boidCounter);
         b = new Boid(mouseX, mouseY);
         boidCounter++;
         flock.push(b);

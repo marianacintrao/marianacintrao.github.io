@@ -1,3 +1,6 @@
+/*=======================================================
+                variables
+=======================================================*/
 const canvasMargin = 15;
 const boidSize = 12;
 const boidsViewRadius = 40;
@@ -8,20 +11,21 @@ const alignmentRatio = 0.5;
 const cohesionRatio = 0.1;
 const speedFactor = 10;
 var maxSpeed = 2.5;
-
 var strokeColor = "black";
 
-// var colors = ["#0F4256", "#BDF2D5", "#BF8049", "#DB9F8D", "#D96A6A"];
-// var colors = ["#0F4256", "#BDF2D5", "#D96A6A", "#BF8049"];
-
+/*=======================================================
+            updates speed from page slider
+=======================================================*/
 var slider = document.getElementById("boidsSpeed");
 slider.oninput = function() {
     maxSpeed = this.value/speedFactor;
 }
 
+/*=======================================================
+=========================================================       
+=======================================================*/
 class Boid {
     constructor(xpos, ypos) {
-        // this.color = colors[Math.round(Math.random()*colors.length)];
         this.color = 'rgb(' + Math.random()*255 + ', ' + Math.random()*255 + ', ' + Math.random()*255 + ')';
         this.angle = Math.random()*2*Math.PI;
         

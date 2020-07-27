@@ -1,4 +1,8 @@
+/*=======================================================
+            night mode toggle function
+=======================================================*/
 const toggleSwitch = document.getElementById("toggle");
+
 function switchTheme(e) {
     if (e.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -13,8 +17,24 @@ function switchTheme(e) {
         strokeColor = "black";
     }    
 }
+
 toggleSwitch.addEventListener('change', switchTheme, false);
 
+/*=======================================================
+                nav bar side slide
+=======================================================*/
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav-links');
+
+function navSlide(e) {
+    nav.classList.toggle('nav-active');
+}
+
+burger.addEventListener('click', navSlide, false);
+
+/*=======================================================
+                flocking info functions
+=======================================================*/
 function popup() {
     document.getElementById("myPopup").classList.toggle("show");
 }
