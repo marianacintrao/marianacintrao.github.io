@@ -6,13 +6,15 @@ const toggleSwitch = document.getElementById("toggle");
 function switchTheme(e) {
     if (e.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
-        document.getElementById("imgAbout").src = "sketch1-04.svg";
+        document.getElementById("imgAbout").src = "sketch0-02.svg";
+        document.getElementById("imgXP").src = "sketch1-04.svg";
         canvasBackground = "black";
         strokeColor = "white";
     }
     else {
         document.documentElement.setAttribute('data-theme', 'light');
-        document.getElementById("imgAbout").src = "sketch1-03.svg";
+        document.getElementById("imgAbout").src = "sketch0-01.svg";
+        document.getElementById("imgXP").src = "sketch1-03.svg";
         canvasBackground = "white";
         strokeColor = "black";
     }    
@@ -44,8 +46,10 @@ function buttons(id) {
 =======================================================*/
 function popup() {
     document.getElementById("myPopup").classList.toggle("show");
+    document.getElementById("popbtn").classList.toggle("hide");
 }
 
 function popout() {
     document.getElementById("myPopup").classList.remove("show");
+    document.getElementById("popbtn").classList.remove("hide");
 }

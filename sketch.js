@@ -10,7 +10,7 @@ var canvasBackground = "white";
 function updateCoords(e) {
     var doc = document.documentElement;
     var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
-    mouseX = e.clientX;
+    mouseX = e.clientX + 15;
     mouseY = e.clientY + top;
 }
 
