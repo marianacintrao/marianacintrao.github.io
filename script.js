@@ -21,16 +21,23 @@ function switchTheme(e) {
 toggleSwitch.addEventListener('change', switchTheme, false);
 
 /*=======================================================
-                nav bar side slide
+                    nav bar side slide
 =======================================================*/
 const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-links');
+const nav = document.querySelector('.nav-items');
 
 function navSlide(e) {
     nav.classList.toggle('nav-active');
+    burger.classList.toggle('toggle');
 }
-
 burger.addEventListener('click', navSlide, false);
+
+/*=======================================================
+                nav bar link scrolls
+=======================================================*/
+function buttons(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"}); 
+}
 
 /*=======================================================
                 flocking info functions
@@ -42,4 +49,3 @@ function popup() {
 function popout() {
     document.getElementById("myPopup").classList.remove("show");
 }
-

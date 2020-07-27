@@ -55,17 +55,16 @@ nav {
     top: 25px;
     display: flex;
     float: left;
-    /* align-items: center; */
-    min-height: 10vh;
     background-color: none;
-    /* border-bottom: 4px solid var(--basecolor1);
-    background-color: var(--basecolor2); */
     position: fixed;
-    width: 100vw;
     z-index: 2;
 }
 
-.nav-links {
+.nav-active {
+    transform: translateX(0%);
+}
+
+.nav-items {
     color: var(--basecolor1);
     position: absolute;
     height: 100vh;
@@ -80,114 +79,133 @@ nav {
     transition: transform 0.2s ease-in;
 }
 
-.nav-links ul {
-    padding: 0;
-    padding-top: 15px;
-}
+    /*::::::::::::::::::::::::::::::::::::::::::::::::
+                    LIGHT/DARK SWITCH
+    ::::::::::::::::::::::::::::::::::::::::::::::::*/
+    .switch {
+        transform: translate(75px, 0);
+        right: 50px;
+        box-sizing: content-box;
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 36px;
+        border: 4px solid var(--basecolor1);
+        background-color: var(--highlightcolor);
+        border-radius: 22px;
 
-.nav-links li {
-    list-style: none;
-    padding: 15px;
-    padding-left: 30px;
-    font-weight: bold;
-    font-size: 20px;
-    cursor: pointer;
-}
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
 
-/* .nav-links li div {
-    width: 100%;
-}
+    .switch::after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 4px solid var(--basecolor1);
+        background-color: var(--basecolor2);
+        top: 2px;
+        left: 2px;
 
-.nav-links li div:hover {
-    background: linear-gradient(180deg,rgba(255,255,255,0) 50%, var(--highlightcolor) 50%);
-} */
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
 
-.nav-links a {
-    color: var(--basecolor1);
-    text-decoration: none;
-}
+    .switch::before {
+        position: absolute;
+        content: 'light/dark mode';
+        font-style: italic;
+        transform: translateX(70px);
+    }
 
-.nav-active {
-    transform: translateX(0%);
-}
+    .checkbox:checked + .switch::after {
+        left: calc(50% - 4px);
 
-.burger {
-    display: grid;
-    place-items: center;
-    transform: translate(25px, 0);
-    width: 50px;
-    height: 50px;
-    background-color: var(--basecolor2);
-    box-shadow: 5px 5px var(--highlightcolor); 
-    border: 4px solid var(--basecolor1);
-    cursor: pointer;
-}
+    }
 
-.burger .lines div {
-    width: 30px;
-    height: 3px;
-    background-color: var(--basecolor1);
-    margin: 6px;
-}
-
-.switch { 
-    transform: translate(75px, 0);
-    right: 50px;
-    box-sizing: content-box;
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 36px;
-    border: 4px solid var(--basecolor1);
+    .checkbox:checked + .switch {
     background-color: var(--highlightcolor);
-    border-radius: 22px;
+    }
 
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
-.switch::after {
-    content: '';
-    position: absolute;
-    /* width: calc(50% - 1vh); */
-    width: 24px;
-    /* height: calc(100% - 2vh); */
-    height: 24px;
-    border-radius: 50%;
-    border: 4px solid var(--basecolor1);
-    background-color: var(--basecolor2);
-    /* top: calc(1vh - 4px);  */
-    top: 2px;
-    /* left: calc(1vh - 4px); */
-    left: 2px;
-
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
-.switch::before {
-    position: absolute;
-    content: 'light/dark mode';
-    transform: translateX(70px);
-}
-
-.checkbox:checked + .switch::after {
-    left: calc(50% - 4px); 
-
-}
-
-.checkbox:checked + .switch {
-    background-color: var(--highlightcolor);
-}
-
-.checkbox { 
+    .checkbox {
     display: none;
-}
+    }
 
+    /*::::::::::::::::::::::::::::::::::::::::::::::::
+                    NAV BUTTON LINKS
+    ::::::::::::::::::::::::::::::::::::::::::::::::*/
+    .nav-items div {
+        padding: 0;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-items button {
+        color: var(--basecolor1);
+        font-size: 20px;
+        background-color: var(--basecolor2);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        user-select: none;
+        font-weight: bold;
+        margin-left: 25px;
+        margin-top: 15px;
+        display: inline-flex;
+    }
+
+    .nav-items button div {
+        margin: 0;
+        margin-left: 5px;
+    }
+
+    .nav-items button div:hover {
+        background: linear-gradient(180deg,rgba(255,255,255,0) 50%, var(--highlightcolor) 50%);
+    }
+
+    /*::::::::::::::::::::::::::::::::::::::::::::::::
+                        BURGER MENU
+    ::::::::::::::::::::::::::::::::::::::::::::::::*/
+    .burger {
+        display: grid;
+        place-items: center;
+        transform: translate(25px, 0);
+        width: 50px;
+        height: 50px;
+        background-color: var(--basecolor2);
+        box-shadow: 5px 5px var(--highlightcolor);
+        border: 4px solid var(--basecolor1);
+        cursor: pointer;
+    }
+
+
+    .burger .lines div {
+        width: 30px;
+        height: 3px;
+        background-color: var(--basecolor1);
+        margin: 6px;
+        transition: transform 0.2s ease-in;
+
+    }
+
+    .toggle .line1 {
+        transform: translate(0, 8.5px) rotate(-45deg);
+    }
+    .toggle .line2 {
+        transform: rotate(-45deg);
+    }
+    .toggle .line3 {
+        transform: translate(0, -8.5px) rotate(45deg);
+    }
+
+    
 /*::::::::::::::::::::::::::::::::::::::::::::::::
                     HEADER
 ::::::::::::::::::::::::::::::::::::::::::::::::*/
@@ -240,7 +258,7 @@ nav {
     font-size: 30px;
     text-align: center center;
     background-color: var(--basecolor2);
-    box-shadow: 5px 5px var(--highlightcolor); 
+    box-shadow: 5px 5px var(--highlightcolor);
     border: 4px solid var(--basecolor1);
     outline: none;
     cursor: pointer;
@@ -250,7 +268,6 @@ nav {
 
 .popbtn:hover {
     font-size: 36px;
-
 }
 
 .popup-content {
@@ -260,7 +277,7 @@ nav {
     right: 25px;
     background-color: var(--basecolor2);
     width: 320px;
-    box-shadow: 5px 5px var(--highlightcolor); 
+    box-shadow: 5px 5px var(--highlightcolor);
     border: 4px solid var(--basecolor1);
     z-index: 1;
     user-select: none;
@@ -305,29 +322,27 @@ nav {
 }
 
     /*::::::::::::::  slider  ::::::::::::::::*/
-    
-    .slidecontainer {
+
+    .slidercontainer {
         padding: 20px;
         padding-top: 0;
-        width: 100%; /* Width of the outside container */
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         align-content: center center;
     }
-      
-      /* The slider itself */
+
     .slider {
-        width: 100%; /* Full-width */
-        height: 25px; /* Specified height */
-        outline: none; /* Remove outline */
-        opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    }
-      
-      /* Mouse-over effects */
-    .slider:hover {
-        opacity: 1; /* Fully shown on mouse-over */
+        width: 100%;
+        height: 25px;
+        outline: none;
+
+        opacity: 0.7;
     }
 
+    .slider:hover {
+        opacity: 1;
+    }
 
 /*::::::::::::::::::::::::::::::::::::::::::::::::
                     BODY
@@ -355,7 +370,7 @@ section {
 
 .split-section .title {
     height: 100vh;
-    position: -webkit-sticky; /* Safari */
+    position: -webkit-sticky; 
     position: sticky;
     top: 0;
     display: grid;
@@ -376,7 +391,7 @@ section {
     .split-section .title {
         display: grid;
         place-items: center;
-    
+
     }
     .split-section .title {
         position: relative;

@@ -10,21 +10,26 @@
     <title>Hi</title>
 </head>
 <body onload="draw();">
+    <!-- ======================================================
+                        navigation bar
+    ====================================================== -->
     <nav>
-        <div class="nav-links">
+        <!-- =============== contents ================= -->
+        <div class="nav-items">
 
-                <input type="checkbox" id="toggle" class="checkbox" />
-                <label for="toggle" class="switch"></label>
-
-            <ul>
-                <li><div><a href="#home"></a>Home</div></li>
-                <li><div><a href="#about"></a>About</div></li>
-            </ul>
+            <input type="checkbox" id="toggle" class="checkbox" />
+            <label for="toggle" class="switch"></label>
+            <div>
+                <button onclick="buttons('canvas-overlay')">► <div>Home</div></button>
+                <button onclick="buttons('about')">► <div>About</div></button>
+            </div>
+            <!-- <ul>
+                <li>► <div><a href="#canvas-overlay"></a>Home</div></li>
+                <li>► <div><a href="#about"></a>About</div></li>
+            </ul> -->
+            
         </div>
-    <!-- <div class="toggle-switch"> -->
-        <!-- <input type="checkbox" id="toggle" class="checkbox" />
-        <label for="toggle" class="switch"></label> -->
-        <!-- </div> -->
+        <!-- =============== burger menu ================= -->
         <div class="burger">
             <div class="lines">
                 <div class="line1"></div>
@@ -33,7 +38,9 @@
             </div>
         </div>
     </nav>
-    <a name="home"></a>
+    <!-- ======================================================
+                        home / header
+    ====================================================== -->
     <div id="canvas-overlay">
         <div>
             <h2>Hi, I'm <span class="highlight"> Mariana </span></h2>
@@ -43,6 +50,9 @@
     <div>
         <canvas id="canvas"></canvas>
     </div>
+    <!-- ======================================================
+                        fock info popup
+    ====================================================== -->
     <div class="popup">
         <button onclick="popup()" class="popbtn">?</button>
         <div id="myPopup" class="popup-content">
@@ -53,12 +63,18 @@
                     <h5>This is a self-indulgent flocking simulation!</h5>
                     <h5>Click anywhere on the canvas to create a new particle. Particles will steer away from the mouse.</h5>
                     <h5>Drag to speed up the particles:</h5>
-                    <div class="slidecontainer">
+                    <!-- =============== speed slider ================= -->
+                    <div class="slidercontainer">
                         <input type="range" min="10" max="160" value="25" class="slider" id="boidsSpeed">
                     </div>
                 </div>
         </div>
     </div>
+    <!-- ======================================================
+                     page body /sections
+    ====================================================== -->
+
+    <!-- =============== about ================= -->
     <section id="about" class="split-section">
         <div class="title"><div>
             <img src="sketch1-03.svg" id="imgAbout" alt="about">
@@ -70,6 +86,8 @@
             <h5>this is still in progress..</h5>
         </div>
     </section>
+
+    <!-- =============== experience ================= -->
     <section id="xp" class="split-section">
         <div class="title">
             <h5>this is still in progress..</h5>
