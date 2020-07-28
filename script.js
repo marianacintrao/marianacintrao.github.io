@@ -44,12 +44,18 @@ function buttons(id) {
 /*=======================================================
                 flocking info functions
 =======================================================*/
-function popup() {
-    document.getElementById("myPopup").classList.toggle("show");
-    document.getElementById("popbtn").classList.toggle("hide");
-}
 
-function popout() {
-    document.getElementById("myPopup").classList.remove("show");
-    document.getElementById("popbtn").classList.remove("hide");
+function popup() {
+    // var popup = document.getElementById("popup");
+    // var popbtn = document.getElementById("ppbtn");
+    var popupbox = document.getElementById("ppinfo");
+    var arrow = document.getElementById("arrw");
+
+    if (!popupbox.classList.contains("ppactive")) {
+        popupbox.classList.toggle("ppactive");
+        arrow.classList.toggle("downarrow");
+    } else {
+        popupbox.classList.remove("ppactive");
+        arrow.classList.remove("downarrow");
+    }
 }
