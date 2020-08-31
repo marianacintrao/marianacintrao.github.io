@@ -13,6 +13,8 @@ const speedFactor = 10;
 var maxSpeed = 2.5;
 var strokeColor = "black";
 
+var clrs = ['#23637A', '#B76480', '#BCEDCA', '#DB9F8D', '#F7DF99'];
+
 /*=======================================================
             updates speed from page slider
 =======================================================*/
@@ -26,7 +28,9 @@ slider.oninput = function() {
 =======================================================*/
 class Boid {
     constructor(xpos, ypos) {
-        this.color = 'rgb(' + Math.random()*255 + ', ' + Math.random()*255 + ', ' + Math.random()*255 + ')';
+        //this.color = 'rgb(' + Math.random()*255 + ', ' + Math.random()*255 + ', ' + Math.random()*255 + ')';
+        this.color = clrs[Math.round(Math.random()*clrs.length)];
+        // this.color = '#C5F9D6';
         this.angle = Math.random()*2*Math.PI;
         
         this.xPos = xpos;
