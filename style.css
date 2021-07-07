@@ -172,6 +172,7 @@ nav {
     }
 
     .nav-items button {
+        text-decoration: none;
         color: var(--basecolor1);
         font-size: 18px;
         background-color: var(--basecolor2);
