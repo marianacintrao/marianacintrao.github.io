@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata:700,400|Montserrat:700,400|Open+Sans:400,700,700i,400i|Rubik:300,400"/> -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="./favicon.png">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
     <title>Hi</title>
 </head>
 <body onload="draw();">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <!-- ======================================================
                         navigation bar
     ====================================================== -->
@@ -19,9 +20,36 @@
             <input type="checkbox" id="toggle" class="checkbox" />
             <label for="toggle" class="switch"></label>
             <div>
-                <button onclick="buttons('canvas-overlay')">► <div>Home</div></button>
-                <button onclick="buttons('about')">► <div>About</div></button>
-                <button onclick="buttons('xp')">► <div>Experience</div></button>
+
+                <a href="#canvas-overlay">
+                    <button class="pagelink">► 
+                        <div>
+                            <span>Home</span>
+                        </div>
+                    </button>
+                </a>
+                <a href="#about">
+                    <button class="pagelink">► 
+                        <div>
+                            <span>About</span>
+                        </div>
+                    </button>
+                </a>
+                <a href="#xp">
+                    <button class="pagelink">► 
+                        <div>
+                            <span>Experience</span> 
+                        </div>
+                    </button>
+                </a>
+                <a href="#ev">
+                    <button class="pagelink">► 
+                        <div>
+                            <span>Education and</span>
+                            <span>Volunteering</span> 
+                        </div>
+                    </button>
+                </a>
             </div>
         </div>
         <!-- =============== burger menu ================= -->
@@ -39,14 +67,14 @@
     <div id="canvas-overlay">
         <div>
             <h2>Hi, I'm <span class="highlight"> Mariana </span></h2>
-            <h3>Scroll down to find out absolutely nothing</h3>
+            <h3>Scroll down to find out some more</h3>
         </div>
     </div>
     <div>
         <canvas id="canvas"></canvas>
     </div>
     <!-- ======================================================
-                        fock info popup
+                        flock info popup
     ====================================================== -->
     <div class="popup" id="popup">
         <div class="popup-button" id="ppbtn">
@@ -69,37 +97,188 @@
     <!-- =============== about ================= -->
     <section id="about" class="split-section">
         <div class="title"><div>
-            <img src="sketch0-01.svg" id="imgAbout" alt="about">
+            <img src="img/sketch0-0.svg" id="imgAbout" alt="about">
             <h1>
                 <span class="highlight"> About </span>
             </h1>
         </div></div>
         <div class="text">
-
+            <div>
+                <section>
+                    <p>&emsp;
+                    
+                    </p>
+                    </br>
+                        <!-- <p>&emsp;
+                            cenassss
+                        </p> -->
+                    </br>
+                    <h5>this is still in progress...</h5>
+                    <h5>this is still in progress...</h5>
+                    <h5>this is still in progress...</h5>
+                </section>
+            </div>
         </div>
     </section>
     <!-- =============== experience ================= -->
     <section id="xp" class="split-section">
         <div class="title"><div>
-            <img src="sketch1-03.svg" id="imgXP" alt="xp">
+            <img src="img/sketch1-0.svg" id="imgXP" alt="xp">
             <h1>
                 <span class="highlight"> Experience </span>
             </h1>
         </div></div>
         <div class="text">
-            <h5>this is still in progress..</h5>
+            <div>
+                <section>
+                    <h3><a href="https://www.sinfo.org/" target="_blank">SINFO</a> - <span class="highlight">Coordinator</span> </h3>
+                    <p>(Feb 2020 - present)</p>
+                    <!-- <hr> -->
+                    <p> Co-leading a team of 20+ people for one of the biggest tech conferences in Portugal. 
+                        SINFO brings the best voices the tech world has to offer right to our University, IST. 
+                        By students and for students, it is completely free for all its attendees.</p>
+                </section>
+                <section>
+                    <h3>GCE-NEIIST  - <span class="highlight">Communication & Design Team</span></h3>
+                    <p>(Sep 2019 - present)</p>
+                    <p>
+                        Creating visual content for the promotion of thesis, interviews, internships, and 
+                        programming tournaments in all of GCE's social media platforms.
+                    </p>
+                </section>
+                <section>
+                    <h3>QueerIST - <span class="highlight">Treasurer</span></h3>
+                    <p>(Sep 2019 - Sep 2020)</p>
+                    <p>
+                        Overseeing QueerIST's finnancial affairs such as drawing up the annual budget, 
+                        refunding collaborators and managing profits and expenses.
+                    </p>
+                </section>
+                <section>
+                    <h3>SINFO - <span class="highlight">Social Media Manager</span> </h3>
+                    <p>(Apr 2019 - Feb 2020)</p>
+                    <p> Managing and creating content for social media platforms in SINFO’s Communication 
+                        and Social Networks team.</p>
+                </section>  
+                <section>
+                    <h3>QueerIST - <span class="highlight">Treasury Team</span></h3>
+                    <p>(Jan 2019 - Sep 2020)</p>
+                    <p>
+                        Responsible for QueerIST’s financial planning along with its treasury team.
+                    </p>
+                </section>
+                <section>
+                    <h3>McDonald's - <span class="highlight">Collaborator</span> </h3>
+                    <p>(Jul 2017)</p>
+                </section>
+            </div>
         </div>
     </section>
+    <!-- =============== education & volunteering ================= -->
+    <section id="ev" class="split-section">
+        <div class="title"><div>
+            <img src="img/sketch2-0.svg" id="imgEV" alt="ev">
+            <h1><span class="highlight">Education and</span> </h1>
+            <h1><span class="highlight">Volunteering</span> </h1>
+        </div></div>
+        <div class="text">
+            <div>
+                <section>
+                    <h3>► Msc. in Computer Science and Engineering</h3>
+                    <h3>
+                        <a href="https://tecnico.ulisboa.pt/en/" target="_blank">Instituto Superior Técnico</a>
+                    </h3>
+                    <p>(Sep 2021 - present)</p>
+                </section>
+                <section>
+                    <h3>► Bsc. in Computer Science and Engineering</h3>
+                    <h3>
+                        <a href="https://tecnico.ulisboa.pt/en/" target="_blank">Instituto Superior Técnico</a>
+                    </h3>
+                    <p>(Sep 2018 - Jul 2021)</p>
+                </section>
+                <section>
+                    <h3>► Exchange Program for Intercultural Education</h3>
+                    <h3>
+                        <a href="https://www.afs.org/" target="_blank">AFS Intercultural Programs - Germany</a>
+                    </h3>
+                    <p>(Sep 2016 - Jul 2017)</p>
+                </section>
 
-    <div id="showcase">
-        <h5>this is still in progress..</h5>
-    </div>
-    <div id="showcase">
-        <h5>this is still in progress..</h5>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="sketch.js"></script>
-    <script src="boid.js"></script>
-    <script src="script.js"></script>
+                    <br>
+                    <hr>
+                    <br>
+                
+                <section>
+                    <h3>NAPE</h3>
+                    <p>(Sep 2019)</p>
+                    <p>Student Mentoring Program</p>
+                </section>
+                <section>
+                    <h3>Apfelbäumchen</h3>
+                    <p>(Feb 2017 - Jul 2017)</p>
+                    <p>
+                        Helping the staff take care of kids ages 2 - 5 in a small daycare in Berlin.
+                    </p>
+                </section>
+                <section>
+                    <h3>Intercultura - AFS</h3>
+                    <p>(Feb 2017 - Jul 2017)</p>
+                    <p>
+                        Providing help to exchange students and their host families as a
+                        contact volunteer. <br>
+                        Interviewing exchange student and host family candidates.
+                    </p>
+                </section>
+
+            </div>
+        </div>
+    </section>
+    <!-- ==============================================
+                        Contact form
+    ============================================== -->
+
+    <section id="contact">
+        <div id="contact-content">
+            <div>
+                <h2><span class="highlight">Send me a message!</span></h2>
+                <h3>Feel free to contact me using this form</h3>
+            </div>
+            <div>
+                <form method="post">
+                    
+                    <label for="name">Name</label>
+                    <input id="name" type="text" name="name" required>
+                    
+                    <label for="email">E-mail</label>
+                    <input id="email" type="text" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" cols="1" rows="5" required></textarea>
+
+                    <button type="submit">
+                        <h3>Send</h3>
+                    </button>
+                    <!-- <button type="submit">Submit</button> -->
+                </form>
+            </div>
+        </div>
+            <!-- <div>
+                <form action="/your-name/" method="post">
+                    <label for="your_name">Your name: </label>
+                    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+                    <input type="submit" value="OK">
+                </form>
+            </div> -->
+        
+        
+    </section>
+
+    <!-- ============================================== -->
+    
+    <script src="scripts/script.js"></script>
+    <script src="scripts/sketch.js"></script>
+    <script src="scripts/boid.js"></script>
+
 </body>
 </html>

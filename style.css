@@ -3,12 +3,8 @@
     --basecolor2: white;
     --highlightcolor1: #BCEDCA;
     --highlightcolor2: #F7DF99;
+    --contrastcolor1: #23637A;
 
-    /* --color1: #207589;
-    --color2: #BDF2D5;
-    --color3: #BF8049;
-    --color4: #DB9F8D;
-    --color5: #D96A6A; */
     --color1: #23637A;
     --color2: #B76480;
     --color3: #BCEDCA;
@@ -21,8 +17,7 @@
     --basecolor2: black;
     --highlightcolor1: #23637A;
     --highlightcolor2: #B76480;
-
-    /* --highlightcolor1: #23637A; */
+    --contrastcolor1: #BCEDCA;
 }
 
 body, html {
@@ -36,6 +31,7 @@ body, html {
     color: var(--basecolor1);
     background-color: var(--basecolor2);
     min-width: 300px;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -55,6 +51,21 @@ html {
 
 .highlight {
     background: linear-gradient(180deg,rgba(255,255,255,0) 50%, var(--highlightcolor1) 50%);
+}
+
+hr {
+    border: 2px solid var(--basecolor1);
+    background-color: var(--basecolor1);
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: var(--basecolor2);
+    background: var(--contrastcolor1);
+}
+  
+::selection {
+    color: var(--basecolor2);
+    background: var(--contrastcolor1);
 }
 
 /*::::::::::::::::::::::::::::::::::::::::::::::::
@@ -157,11 +168,12 @@ nav {
         margin-top: 15px;
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .nav-items button {
         color: var(--basecolor1);
-        font-size: 20px;
+        font-size: 18px;
         background-color: var(--basecolor2);
         border: none;
         outline: none;
@@ -178,7 +190,7 @@ nav {
         margin-left: 5px;
     }
 
-    .nav-items button div:hover {
+    .nav-items button div:hover span {
         background: linear-gradient(180deg,rgba(255,255,255,0) 50%, var(--highlightcolor1) 50%);
     }
 
@@ -277,12 +289,25 @@ nav {
     transition: transform 0.5s;
 }
 
+.burger {
+    display: grid;
+    place-items: center;
+    transform: translate(25px, 0);
+    width: 50px;
+    height: 50px;
+    background-color: var(--basecolor2);
+    box-shadow: 5px 5px var(--highlightcolor1);
+    border: 4px solid var(--basecolor1);
+    cursor: pointer;
+}
+
 .popbtn {
-    position: relative;
-    opacity: 1;
+    /* position: relative; */
+    /* opacity: 1; */
     pointer-events: all;
     width: 50px;
     height: 50px;
+    /* height: 100%; */
     right: 0;
     color: var(--basecolor1);
     font-size: 30px;
@@ -297,6 +322,7 @@ nav {
 }
 
 .popbtn p {
+    height: 100%;
     display: grid;
     place-items: center;
 }
@@ -436,28 +462,31 @@ section {
     margin: 0;
 }
 
-/* #xp .title img {
-    height: 37vmin;
-} */
-
 .split-section .text {
     min-height: 100vh;
     display: grid;
     place-items: center;
+    padding: 5vw;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .split-section .text div {
     display: inline-block;
 }
+
 .split-section .text section {
     padding: 25px;
     /* background-color: var(--highlightcolor1); */
-
 }
 
 .split-section .text a {
     text-decoration: none;
     color: var(--basecolor1);
+}
+.split-section .text a:hover {
+    /* color: var(--highlightcolor2); */
+    background: linear-gradient(180deg,rgba(255,255,255,0) 50%, var(--highlightcolor1) 50%);
 }
 
 @media only screen and (max-width: 920px) {
@@ -474,3 +503,95 @@ section {
 #showcase {
     text-align: center;
 }
+
+
+
+/*::::::::::::::::::::::::::::::::::::::::::::::::
+                    CONTACT
+::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+#contact {
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    padding: 30px;
+}
+
+#contact-content {
+    width: 50%;
+    text-align: left;
+    overflow: auto;
+    color: var(--basecolor1);
+    background-color: var(--basecolor2);
+    margin: 30px;
+    margin-right:30px;
+    box-shadow: 5px 5px var(--highlightcolor1);
+    border:  4px solid var(--basecolor1);
+    padding: 30px;
+}
+
+#contact-content div {
+    padding: 15px;
+}
+
+#contact-content input, textarea {
+    padding: 5px;
+    border:  4px solid var(--basecolor1);
+    background-color: var(--basecolor2);
+    color: var(--basecolor1);
+    width: 100%;
+    display: inline-block;
+    text-align: top;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: monospace;
+    resize: none;
+}
+
+#contact-content #message {
+    height: 100px;
+}
+
+#contact-content input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 5px 5px var(--highlightcolor1);
+}
+
+#contact-content button {
+    color: var(--basecolor1);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    border:  4px solid var(--basecolor1);
+    background-color: var(--basecolor2);
+    color: var(--basecolor1);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    box-shadow: 5px 5px var(--highlightcolor1);
+}
+
+
+#contact-content button:hover {
+    box-shadow: 5px 5px var(--contrastcolor1);
+}
+
+@media only screen and (max-width: 920px) {
+    #contact-content {
+        width: 95%;
+        text-align: left;
+        overflow: auto;
+        color: var(--basecolor1);
+        background-color: var(--basecolor2);
+        margin: 30px;
+        margin-right:30px;
+        box-shadow: 5px 5px var(--highlightcolor1);
+        border:  4px solid var(--basecolor1);
+        padding: 30px;
+    }
+}
+
+
+
+
