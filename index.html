@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata:700,400|Montserrat:700,400|Open+Sans:400,700,700i,400i|Rubik:300,400"/> -->
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
+
     <title>Hi</title>
 </head>
 <body onload="draw();">
@@ -106,13 +107,14 @@
             <div>
                 <section>
                     <p>&emsp;
-                    
+                        I'm currently studying Computer Science and Engineering at Técnico - Lisboa.
+                        <br>                                          
                     </p>
-                    </br>
-                        <!-- <p>&emsp;
+                    <!-- </br>
+                        <p>&emsp;
                             cenassss
-                        </p> -->
-                    </br>
+                        </p>
+                    </br> -->
                     <h5>this is still in progress...</h5>
                     <h5>this is still in progress...</h5>
                     <h5>this is still in progress...</h5>
@@ -245,16 +247,21 @@
                 <h3>Feel free to contact me using this form</h3>
             </div>
             <div>
-                <form method="post">
+                <form id="contact-form" method="post" action="scripts/contact.php" role="form">
                     
                     <label for="name">Name</label>
-                    <input id="name" type="text" name="name" required>
+                    <input id="name" class="textboxinput" type="text" name="name" required>
                     
                     <label for="email">E-mail</label>
-                    <input id="email" type="text" name="email" required>
+                    <input id="email" class="textboxinput" type="text" name="email" required>
 
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" cols="1" rows="5" required></textarea>
+                    <textarea id="message" class="textboxinput" name="message" cols="1" rows="5" required></textarea>
+
+                    <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+                    <input class="form-control" data-recaptcha="true" required data-error="Please complete the Captcha">
+
+                    <br>
 
                     <button type="submit">
                         <h3>Send</h3>
@@ -275,6 +282,9 @@
     </section>
 
     <!-- ============================================== -->
+
+    <!-- ReCaptcha -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     
     <script src="scripts/script.js"></script>
     <script src="scripts/sketch.js"></script>
