@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
+    <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata:700,400|Montserrat:700,400|Open+Sans:400,700,700i,400i|Rubik:300,400"/> -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="style.css">
-
     <title>Hi</title>
 </head>
 <body onload="draw();">
@@ -107,17 +106,37 @@
             <div>
                 <section>
                     <p>&emsp;
-                        I'm currently studying Computer Science and Engineering at Técnico - Lisboa.
-                        <br>                                          
+                    
                     </p>
-                    <!-- </br>
-                        <p>&emsp;
+                    </br>
+                        <!-- <p>&emsp;
                             cenassss
+                        </p> -->
+                    </br>
+                    <!--
+                    <h5>this is still in progress...</h5>
+                    <h5>this is still in progress...</h5>
+                    <h5>this is still in progress...</h5>
+                    -->
+                    <!--
+                        <p>
+                            Computer Science and Engineering Student at IST.
                         </p>
-                    </br> -->
-                    <h5>this is still in progress...</h5>
-                    <h5>this is still in progress...</h5>
-                    <h5>this is still in progress...</h5>
+                        <p>
+                            Creative, practical, motivated, flexible and hard-working lover of art and technology.
+                        </p>
+                        <br>   
+                    -->
+                    <p>
+                        After spending my childhood in the West of Portugal - neer the beaches and the vines -, I took a detour through Berlin, and landed in Lisbon to study Computer Science at Técnico (IST).
+                        <br>
+                        <br>
+                        I have a big passion for movies, music, books, and food. The whole of my adult life I've been a vegetarian, but maybe someday I'll take a break and go get some Frango da Guia.
+                        Besides this, I love cooking and playing the guitar, and I'm not great at either but both bring me great enjoyment. 
+                        <br>
+                        <br>
+                        Most of my time I spend with my friends or family, I'm the happiest when I'm in good company.
+                    </p>
                 </section>
             </div>
         </div>
@@ -134,7 +153,7 @@
             <div>
                 <section>
                     <h3><a href="https://www.sinfo.org/" target="_blank">SINFO</a> - <span class="highlight">Coordinator</span> </h3>
-                    <p>(Feb 2020 - present)</p>
+                    <p>(Feb 2020 - March 2022)</p>
                     <!-- <hr> -->
                     <p> Co-leading a team of 20+ people for one of the biggest tech conferences in Portugal. 
                         SINFO brings the best voices the tech world has to offer right to our University, IST. 
@@ -157,7 +176,7 @@
                     </p>
                 </section>
                 <section>
-                    <h3>SINFO - <span class="highlight">Social Media Manager</span> </h3>
+                    <h3><a href="https://www.sinfo.org/" target="_blank">SINFO</a> - <span class="highlight">Social Media Manager</span> </h3>
                     <p>(Apr 2019 - Feb 2020)</p>
                     <p> Managing and creating content for social media platforms in SINFO’s Communication 
                         and Social Networks team.</p>
@@ -190,7 +209,7 @@
                     <h3>
                         <a href="https://tecnico.ulisboa.pt/en/" target="_blank">Instituto Superior Técnico</a>
                     </h3>
-                    <p>(Sep 2021 - present)</p>
+                    <p>(Sep 2021 - Sep 2023)</p>
                 </section>
                 <section>
                     <h3>► Bsc. in Computer Science and Engineering</h3>
@@ -212,7 +231,7 @@
                     <br>
                 
                 <section>
-                    <h3>NAPE</h3>
+                    <h3>NAPE - IST</h3>
                     <p>(Sep 2019)</p>
                     <p>Student Mentoring Program</p>
                 </section>
@@ -239,37 +258,32 @@
     <!-- ==============================================
                         Contact form
     ============================================== -->
-
-    <section id="contact">
-        <div id="contact-content">
-            <div>
-                <h2><span class="highlight">Send me a message!</span></h2>
-                <h3>Feel free to contact me using this form</h3>
-            </div>
-            <div>
-                <form id="contact-form" method="post" action="scripts/contact.php" role="form">
+    <!--
+        <section id="contact">
+            <div id="contact-content">
+                <div>
+                    <h2><span class="highlight">Send me a message!</span></h2>
+                    <h3>Feel free to contact me using this form</h3>
+                </div>
+                <div>
+                <form method="post">
                     
                     <label for="name">Name</label>
-                    <input id="name" class="textboxinput" type="text" name="name" required>
+                    <input id="name" type="text" name="name" required>
                     
                     <label for="email">E-mail</label>
-                    <input id="email" class="textboxinput" type="text" name="email" required>
-
+                    <input id="email" type="text" name="email" required>
+                    
                     <label for="message">Message</label>
-                    <textarea id="message" class="textboxinput" name="message" cols="1" rows="5" required></textarea>
-
-                    <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                    <input class="form-control" data-recaptcha="true" required data-error="Please complete the Captcha">
-
-                    <br>
-
+                    <textarea id="message" name="message" cols="1" rows="5" required></textarea>
+                    
                     <button type="submit">
                         <h3>Send</h3>
                     </button>
-                    <!-- <button type="submit">Submit</button> -->
                 </form>
             </div>
         </div>
+    -->
             <!-- <div>
                 <form action="/your-name/" method="post">
                     <label for="your_name">Your name: </label>
@@ -282,9 +296,6 @@
     </section>
 
     <!-- ============================================== -->
-
-    <!-- ReCaptcha -->
-    <script src='https://www.google.com/recaptcha/api.js'></script>
     
     <script src="scripts/script.js"></script>
     <script src="scripts/sketch.js"></script>
