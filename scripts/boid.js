@@ -18,10 +18,14 @@ var clrs = ['#23637A', '#B76480', '#BCEDCA', '#DB9F8D', '#F7DF99'];
 /*=======================================================
             updates speed from page slider
 =======================================================*/
-var slider = document.getElementById("boidsSpeed");
-slider.oninput = function() {
-    maxSpeed = this.value/speedFactor;
+try {
+    var slider = document.getElementById("boidsSpeed");
+    slider.oninput = function() {
+        maxSpeed = this.value/speedFactor;
+    }
+} catch (error) {
 }
+
 
 /*=======================================================
 =========================================================       
